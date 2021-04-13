@@ -1,6 +1,6 @@
 ﻿namespace MyGame
 {
-    public enum PersonName
+    public enum PlayerName
     {
         Blum,
         Muse,

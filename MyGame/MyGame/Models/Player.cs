@@ -1,18 +1,34 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace MyGame
 {
-    public class Player
+    public class Player: PersonBase
     {
-        public PersonName Name { get; }
-        public Point Location { get; private set; }
-        public int HP { get; private set; }
-        
-        public Player(PersonName name, Point location)
+    public PlayerName Name { get; }
+
+    public Player(PlayerName name, Point location) : base(location)
+    {
+        Name = name;
+    }
+
+    public override void Move(Map map, Direction direction)
+    {
+        var newPoint = Location + DirectionAndValue.DirectionsAndValues[direction];
+        if (map.InBounds(newPoint) && !map.IsWall(newPoint))
         {
-            Name = name;
-            Location = location;
-            HP = 100;
+            Location = newPoint;
         }
+    }
+
+    public void ApplyAttackingAbility(Ability ability, Monster monster)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RestoreHealth()
+    {
+        throw new NotImplementedException();
+    }
     }
 }
