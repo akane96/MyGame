@@ -6,4 +6,19 @@
         <UseWindowsForms>true</UseWindowsForms>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Update="StartControl.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="PlayerSelectionControl.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="BattleControl.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="FinishControl.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>

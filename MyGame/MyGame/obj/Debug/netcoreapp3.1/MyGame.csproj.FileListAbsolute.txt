@@ -11,3 +11,5 @@ C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame
 C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.dll
 C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.pdb
 C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.genruntimeconfig.cache
+C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.StartControl.resources
+C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.csproj.GenerateResource.cache
