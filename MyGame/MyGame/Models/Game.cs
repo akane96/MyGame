@@ -4,24 +4,28 @@ namespace MyGame
 {
     public class Game
     {
-        private GameState state = GameState.None;
-        private event Action<GameState> changedState;
+        private GameState state = GameState.Start;
+        public event Action<GameState> ChangedState;
         
         public Map Map;
         public Player Player;
         public Monster[] Monsters;
 
-        public Game(Map map, Player player, Monster[] monsters)
+        public Game(Map map, Monster[] monsters)
         {
             Map = map;
-            Player = player;
             Monsters = monsters;
         }
 
         public void ChangeState(GameState gameState)
         {
             state = gameState;
-            changedState?.Invoke(gameState);
+            ChangedState?.Invoke(gameState);
+        }
+
+        public void CreatePlayer(Player player)
+        {
+            Player = player;
         }
     }
 }

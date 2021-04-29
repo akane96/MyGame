@@ -8,5 +8,10 @@ namespace MyGame
         {
             InitializeComponent();
         }
+
+        public void Configure(Game game)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

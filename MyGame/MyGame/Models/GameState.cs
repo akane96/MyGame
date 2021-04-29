@@ -2,7 +2,6 @@
 {
     public enum GameState
     {
-        None,
         Start,
         SelectionPlayer,
         Battle,
