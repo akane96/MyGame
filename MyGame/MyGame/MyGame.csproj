@@ -19,6 +19,16 @@
       <Compile Update="FinishControl.cs">
         <SubType>UserControl</SubType>
       </Compile>
+      <Compile Update="StartControl.Designer.cs">
+        <DependentUpon>Form1.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\grass.png" />
+      <Resource Include="Resources\grass.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>

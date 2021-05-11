@@ -5,6 +5,7 @@ namespace MyGame
     public class Game
     {
         private GameState state = GameState.Start;
+        public const int CellSize = 50;
         public event Action<GameState> ChangedState;
         
         public Map Map;

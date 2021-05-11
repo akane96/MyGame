@@ -20,6 +20,7 @@ namespace MyGame
 
             var buttonPlayer1 = new Button();
             buttonPlayer1.Name = "Игрок1";
+            buttonPlayer1.Font = new Font(FontFamily.GenericMonospace, 12);
             buttonPlayer1.Click += (sender, args) =>
             {
                 var player1 = new Player(PlayerName.Muse, new Point(12, 1));

@@ -10,25 +10,65 @@ namespace MyGame
         private PlayerSelectionControl playerSelectionControl;
         private BattleControl battleControl;
         private FinishControl finishControl;
+
         public Form1()
         {
             InitializeComponent();
             var map = new Map(
                 new Cell[,]
                 {
-                    {Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty},
-                    {Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty}
+                    {
+                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall,
+                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty,
+                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty,
+                        Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty,
+                        Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty,
+                        Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall,
+                        Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty,
+                        Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall,
+                        Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall,
+                        Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty,
+                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall,
+                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall,
+                        Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty
+                    },
+                    {
+                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty,
+                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty
+                    }
                 }
             );
             startControl = new StartControl();
@@ -43,25 +83,41 @@ namespace MyGame
             battleControl.Hide();
             finishControl.Hide();
             game = new Game(map, new Monster[] {new Monster(new Point(0, 0))});
+            startControl.Configure(game);
             game.ChangedState += state =>
             {
                 HideScreens();
                 switch (state)
                 {
-                    case GameState.Start : startControl.Show();
+                    case GameState.Start:
+                    {
+                        startControl.Configure(game);
+                        startControl.Show();
+                    }
+                        ;
                         break;
-                    case GameState.SelectionPlayer: playerSelectionControl.Show();
+                    case GameState.SelectionPlayer:
+                    {
+                        playerSelectionControl.Configure(game);
+                        playerSelectionControl.Show();
+                    }
                         break;
-                    case GameState.Battle : battleControl.Show();
+                    case GameState.Battle:
+                    {
+                        battleControl.Configure(game);
+                        battleControl.Show();
+                    }
                         break;
-                    case GameState.Result : finishControl.Show();
+                    case GameState.Result:
+                    {
+                        finishControl.Configure(game);
+                        finishControl.Show();
+                    }
                         break;
                 }
             };
-            startControl.Configure(game);
-            playerSelectionControl.Configure(game);
-            battleControl.Configure(game);
-            finishControl.Configure(game);
+
+
         }
 
         private void HideScreens()
