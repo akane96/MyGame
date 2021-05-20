@@ -19,7 +19,12 @@ namespace MyGame
 
         public override void Move(Map map, Direction direction)
         {
-            throw new System.NotImplementedException();
+            var newPoint = Location + DirectionAndValue.DirectionsAndValues[direction];
+            var previousLocation = Location;
+            if (!map.InBounds(newPoint) || map.IsWall(newPoint)) return;
+            Location = newPoint;
+            // map.Cells[newPoint.X, newPoint.Y] = Cell.Monster;
+            // map.Cells[previousLocation.X, previousLocation.Y] = Cell.Empty;
         }
     }
 }

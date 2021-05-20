@@ -82,7 +82,7 @@ namespace MyGame
             playerSelectionControl.Hide();
             battleControl.Hide();
             finishControl.Hide();
-            game = new Game(map, new Monster[] {new Monster(new Point(0, 0))});
+            game = new Game(map, new Monster[] {new Monster(new Point(6, 0))});
             startControl.Configure(game);
             game.ChangedState += state =>
             {

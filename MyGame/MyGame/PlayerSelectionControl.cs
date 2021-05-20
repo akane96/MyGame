@@ -23,7 +23,7 @@ namespace MyGame
             buttonPlayer1.Font = new Font(FontFamily.GenericMonospace, 12);
             buttonPlayer1.Click += (sender, args) =>
             {
-                var player1 = new Player(PlayerName.Muse, new Point(12, 1));
+                var player1 = new Player(PlayerName.Muse, new Point(0, 0));
                 game.CreatePlayer(player1);
                 game.ChangeState(GameState.Battle);
             };

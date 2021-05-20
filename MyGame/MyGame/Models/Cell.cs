@@ -4,6 +4,6 @@
     {
         Empty,
         Wall,
-        PlayerAbility
+        PlayerAbility,
     }
 }
