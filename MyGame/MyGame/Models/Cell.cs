@@ -5,5 +5,6 @@
         Empty,
         Wall,
         PlayerAbility,
+        Monster
     }
 }

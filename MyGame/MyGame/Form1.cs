@@ -42,7 +42,7 @@ namespace MyGame
                         Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty
                     },
                     {
-                        Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty,
+                        Cell.Monster, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Monster,
                         Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty
                     },
                     {
@@ -59,7 +59,7 @@ namespace MyGame
                     },
                     {
                         Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall,
-                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty
+                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Monster
                     },
                     {
                         Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall,
@@ -82,7 +82,7 @@ namespace MyGame
             playerSelectionControl.Hide();
             battleControl.Hide();
             finishControl.Hide();
-            game = new Game(map, new Monster[] {new Monster(new Point(6, 0))});
+            game = new Game(map, new[] {new Monster(new Point(6, 0)), new Monster(new Point(6, 7)), new Monster(new Point(10, 12))});
             startControl.Configure(game);
             game.ChangedState += state =>
             {

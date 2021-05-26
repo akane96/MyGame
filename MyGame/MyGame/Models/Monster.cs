@@ -20,11 +20,10 @@ namespace MyGame
         public override void Move(Map map, Direction direction)
         {
             var newPoint = Location + DirectionAndValue.DirectionsAndValues[direction];
-            var previousLocation = Location;
-            if (!map.InBounds(newPoint) || map.IsWall(newPoint)) return;
+            if (!map.InBounds(newPoint) || map.IsWall(newPoint) || map.Cells[newPoint.X, newPoint.Y] == Cell.Monster) return;
+            map.Cells[Location.X, Location.Y] = Cell.Empty;
             Location = newPoint;
-            // map.Cells[newPoint.X, newPoint.Y] = Cell.Monster;
-            // map.Cells[previousLocation.X, previousLocation.Y] = Cell.Empty;
+            map.Cells[newPoint.X, newPoint.Y] = Cell.Monster;
         }
     }
 }

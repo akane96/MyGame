@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,19 +9,18 @@ namespace MyGame
     public sealed partial class BattleControl : UserControl
     {
         private Game _game;
-        private Timer timer;
+        private readonly Timer timer;
         private static readonly Bitmap Grass = new Bitmap(Image.FromFile("grass.png"));
         private static readonly Bitmap Wall = new Bitmap(Image.FromFile("wall.png"));
-        private static readonly Bitmap Player1 = new Bitmap(Image.FromFile("messy.png"));
-        private static readonly Bitmap Monster = new Bitmap(Image.FromFile(@"monsters\1.png"));
+        private Bitmap Player1;
+        private Bitmap[] monstersImages;
         private readonly Random _random = new Random();
 
         public BattleControl()
         {
             DoubleBuffered = true;
             InitializeComponent();
-            timer = new Timer();
-            timer.Interval = 500;
+            timer = new Timer {Interval = 400};
             KeyDown += OnKeyDown;
         }
 
@@ -29,6 +29,12 @@ namespace MyGame
             if (_game != null)
                 return;
             _game = game;
+            Player1 = new Bitmap(Image.FromFile($"{_game.Player.Name}.png"));
+            monstersImages = Enumerable.Range(1, _game.Monsters.Length)
+                .Select(e =>
+                    new Bitmap(Image.FromFile($@"monsters\{_random.Next(1, 40)}.png")
+                        .GetThumbnailImage(Game.CellSize, Game.CellSize, null, IntPtr.Zero)))
+                .ToArray();
             timer.Tick += TimerOnTick;
             timer.Start();
         }
@@ -52,12 +58,11 @@ namespace MyGame
                 default:
                     return;
             }
-            MoveMonster();
         }
 
         private void TimerOnTick(object sender, EventArgs e)
         {
-            
+            MoveMonster();
             Invalidate();
         }
 
@@ -82,6 +87,7 @@ namespace MyGame
 
                 if (monster.Location != _game.Player.Location) continue;
                 _game.Player.HP = 0;
+                _game.ChangeState(GameState.Result);
                 return;
             }
         }
@@ -101,15 +107,18 @@ namespace MyGame
 
         private void DrawMonsters(PaintEventArgs e)
         {
-            foreach (var monster in _game.Monsters)
+            for (var i = 0; i < _game.Monsters.Length; i++)
             {
-                e.Graphics.DrawImage(Monster, monster.Location.X * Game.CellSize, monster.Location.Y * Game.CellSize);
+                var monster = _game.Monsters[i];
+                e.Graphics.DrawImage(monstersImages[i], monster.Location.X * Game.CellSize,
+                    monster.Location.Y * Game.CellSize);
             }
         }
 
         private void DrawPlayer(PaintEventArgs e)
         {
-            e.Graphics.DrawImage(Player1, _game.Player.Location.X * Game.CellSize, _game.Player.Location.Y * Game.CellSize, new Rectangle(237, 125, 50, 50), GraphicsUnit.Pixel);
+            e.Graphics.DrawImage(_game.Player.Name == PlayerName.Fire ? Player1 : Player1.GetThumbnailImage(50, 50, null, IntPtr.Zero), _game.Player.Location.X * Game.CellSize,
+                _game.Player.Location.Y * Game.CellSize, _game.Player.Name == PlayerName.Fire ? new Rectangle(237, 125, 50, 50) : new Rectangle(0, 0, 50, 50), GraphicsUnit.Pixel);
         }
 
         private void DrawMap(PaintEventArgs e)
@@ -122,7 +131,8 @@ namespace MyGame
                 for (var y = 0; y < height; y++)
                 {
                     var location = new Point(x, y);
-                    e.Graphics.DrawImage(map.IsWall(location) ? Wall : Grass, location.X * Game.CellSize, y * Game.CellSize);
+                    e.Graphics.DrawImage(map.IsWall(location) ? Wall : Grass, location.X * Game.CellSize,
+                        y * Game.CellSize);
                 }
             }
         }

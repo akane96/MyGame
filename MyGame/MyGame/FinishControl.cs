@@ -4,6 +4,7 @@ namespace MyGame
 {
     public partial class FinishControl : UserControl
     {
+        private Game _game;
         public FinishControl()
         {
             InitializeComponent();
@@ -11,7 +12,11 @@ namespace MyGame
 
         public void Configure(Game game)
         {
-            throw new System.NotImplementedException();
+            if (_game != null)
+                return;
+            _game = game;
+            MessageBox.Show(
+                "Игра закончена");
         }
     }
 }

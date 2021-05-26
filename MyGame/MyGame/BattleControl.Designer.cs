@@ -38,7 +38,7 @@ namespace MyGame
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "BattleControl";
-            this.Size = new System.Drawing.Size(1200, 900);
+            this.Size = new System.Drawing.Size(850, 700);
             this.ResumeLayout(false);
         }
 

@@ -16,3 +16,5 @@ C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame
 C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.PlayerSelectionControl.resources
 C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.BattleControl.resources
 C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.g.resources
+C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.FinishControl.resources
+C:\Users\smuhu\RiderProjects\MyGame\MyGame\MyGame\obj\Debug\netcoreapp3.1\MyGame.Form1.resources

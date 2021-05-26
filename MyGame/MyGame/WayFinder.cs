@@ -11,8 +11,8 @@ namespace MyGame
         public static Direction FindDirection(Map gameMap, Point monsterLocation, Point playerLocation)
         {
             var path = FindPaths(gameMap, monsterLocation, playerLocation).FirstOrDefault()?.ToArray();
-            if (path == null)
-                throw new Exception("Monster can't move");
+            if (path == null || path.Length < 2)
+                return Direction.None;
             var newPoint = path[^2];
             var offset = new Size(newPoint.X - monsterLocation.X,
                 newPoint.Y - monsterLocation.Y);

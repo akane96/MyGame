@@ -2,11 +2,8 @@
 {
     public enum PlayerName
     {
-        Blum,
-        Muse,
-        Stella,
-        Tekna,
-        Leila,
-        Flora
+        Bird,
+        Fire,
+        Cat,
     }
 }

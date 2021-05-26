@@ -37,10 +37,9 @@ namespace MyGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Name = "PlayerSelectionControl";
-            this.Size = new System.Drawing.Size(590, 405);
+            this.Size = new System.Drawing.Size(850, 700);
             this.ResumeLayout(false);
         }
 

@@ -7,9 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Update="StartControl.cs">
-        <SubType>UserControl</SubType>
-      </Compile>
       <Compile Update="PlayerSelectionControl.cs">
         <SubType>UserControl</SubType>
       </Compile>
@@ -19,8 +16,8 @@
       <Compile Update="FinishControl.cs">
         <SubType>UserControl</SubType>
       </Compile>
-      <Compile Update="StartControl.Designer.cs">
-        <DependentUpon>Form1.cs</DependentUpon>
+      <Compile Update="StartControl.cs">
+        <SubType>UserControl</SubType>
       </Compile>
     </ItemGroup>
 

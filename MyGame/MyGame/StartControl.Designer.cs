@@ -37,9 +37,8 @@ namespace MyGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.Name = "StartControl";
-            this.Size = new System.Drawing.Size(274, 367);
+            this.Size = new System.Drawing.Size(850, 700);
             this.ResumeLayout(false);
         }
 
