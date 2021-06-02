@@ -4,7 +4,7 @@
     {
         Empty,
         Wall,
-        PlayerAbility,
+        Projectile,
         Monster
     }
 }

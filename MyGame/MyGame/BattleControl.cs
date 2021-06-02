@@ -12,6 +12,8 @@ namespace MyGame
         private readonly Timer timer;
         private static readonly Bitmap Grass = new Bitmap(Image.FromFile("grass.png"));
         private static readonly Bitmap Wall = new Bitmap(Image.FromFile("wall.png"));
+        private static readonly Bitmap ProjectileImage = new Bitmap(Image.FromFile("Light.png"));
+        private static readonly Bitmap ProjectileOnMapImage = new Bitmap(Image.FromFile("FireProjectileOnMap.png"));
         private Bitmap Player1;
         private Bitmap[] monstersImages;
         private readonly Random _random = new Random();
@@ -55,6 +57,18 @@ namespace MyGame
                 case Keys.D:
                     _game.Player.Move(_game.Map, Direction.Right);
                     break;
+                case Keys.I:
+                    _game.Player.ApplyAttackingAbility(Direction.Up);
+                    break;
+                case Keys.K:
+                    _game.Player.ApplyAttackingAbility(Direction.Down);
+                    break;
+                case Keys.J:
+                    _game.Player.ApplyAttackingAbility(Direction.Left);
+                    break;
+                case Keys.L:
+                    _game.Player.ApplyAttackingAbility(Direction.Right);
+                    break;
                 default:
                     return;
             }
@@ -63,7 +77,24 @@ namespace MyGame
         private void TimerOnTick(object sender, EventArgs e)
         {
             MoveMonster();
+            if ((double)_game.ProjectileOnMapCount/_game.ProjectileOnMapMaxCount < 0.3)
+                _game.CreateProjectile();
+            if (_game.Player.ProjectilesInAction.Any())
+                MoveProjictilesInAction();
             Invalidate();
+        }
+
+        private void MoveProjictilesInAction()
+        {
+            var projectiles = new List<(Projectile, Direction)>();
+            foreach (var (projectile, direction) in _game.Player.ProjectilesInAction)
+            {
+                projectile.Move(direction);
+                if (projectile.IsInAction)
+                    projectiles.Add((projectile, direction));
+            }
+
+            _game.Player.ProjectilesInAction = projectiles;
         }
 
         private void MoveMonster()
@@ -103,6 +134,7 @@ namespace MyGame
             DrawMap(e);
             DrawPlayer(e);
             DrawMonsters(e);
+            DrawProjectile(e);
         }
 
         private void DrawMonsters(PaintEventArgs e)
@@ -121,6 +153,14 @@ namespace MyGame
                 _game.Player.Location.Y * Game.CellSize, _game.Player.Name == PlayerName.Fire ? new Rectangle(237, 125, 50, 50) : new Rectangle(0, 0, 50, 50), GraphicsUnit.Pixel);
         }
 
+        private void DrawProjectile(PaintEventArgs e)
+        {
+            foreach (var (projectile, _) in _game.Player.ProjectilesInAction)
+            {
+                e.Graphics.DrawImage(ProjectileImage, projectile.Location);
+            }
+        }
+
         private void DrawMap(PaintEventArgs e)
         {
             var map = _game.Map;
@@ -131,7 +171,7 @@ namespace MyGame
                 for (var y = 0; y < height; y++)
                 {
                     var location = new Point(x, y);
-                    e.Graphics.DrawImage(map.IsWall(location) ? Wall : Grass, location.X * Game.CellSize,
+                    e.Graphics.DrawImage(map.IsWall(location) ? Wall : map.Cells[location.X, location.Y] == Cell.Projectile ? ProjectileOnMapImage : Grass, location.X * Game.CellSize,
                         y * Game.CellSize);
                 }
             }

@@ -39,7 +39,7 @@ namespace MyGame
             buttonPlayer1.Top = (Size.Height - buttonPlayer1.Height) / 2;
             buttonPlayer1.Click += (sender, args) =>
             {
-                var player = new Player(PlayerName.Fire, new Point(0, 0));
+                var player = new Player(PlayerName.Fire, new Point(0, 0), game);
                 game.CreatePlayer(player);
                 game.ChangeState(GameState.Battle);
             };
@@ -53,7 +53,7 @@ namespace MyGame
             buttonPlayer2.Top = (Size.Height - buttonPlayer2.Height) / 2;
             buttonPlayer2.Click += (sender, args) =>
             {
-                var player = new Player(PlayerName.Bird, new Point(0, 0));
+                var player = new Player(PlayerName.Bird, new Point(0, 0), game);
                 game.CreatePlayer(player);
                 game.ChangeState(GameState.Battle);
             };
@@ -67,7 +67,7 @@ namespace MyGame
             buttonPlayer3.Top = (Size.Height - buttonPlayer3.Height) / 2;
             buttonPlayer3.Click += (sender, args) =>
             {
-                var player = new Player(PlayerName.Cat, new Point(0, 0));
+                var player = new Player(PlayerName.Cat, new Point(0, 0), game);
                 game.CreatePlayer(player);
                 game.ChangeState(GameState.Battle);
             };
