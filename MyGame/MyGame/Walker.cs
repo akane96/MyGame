@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using MyGame;
 
-namespace Dungeon
+namespace MyGame
 {
 	public class Walker
 	{
@@ -44,6 +44,12 @@ namespace Dungeon
 		public static Direction ConvertOffsetToDirection(Size offset)
 		{
 			return offsetToDirection[offset];
+		}
+		
+		public static int GetDistanceBetweenPoints(Point first, Point second)
+		{
+			return (int) Math.Round(Math.Sqrt((first.X - second.X) * (first.X - second.X) +
+			                                  (first.Y - second.Y) * (first.Y - second.Y)));
 		}
 	}
 }

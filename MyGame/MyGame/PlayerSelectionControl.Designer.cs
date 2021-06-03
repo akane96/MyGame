@@ -2,7 +2,7 @@
 
 namespace MyGame
 {
-    partial class PlayerSelectionControl
+    sealed partial class PlayerSelectionControl
     {
         /// <summary> 
         /// Required designer variable.

@@ -1,41 +1,39 @@
 ﻿using System.Drawing;
 using System.Linq;
-using Dungeon;
 
 namespace MyGame
 {
     public class Projectile
     {
-        private readonly Game _game;
         public Point Location { get; set; }
         public bool IsInAction { get; set; }
-        public Map Map { get; }
         public int PowerOutput { get; }
 
-        public Projectile(Point location, Map map, Game game, int powerOutput = 15)
+        public Projectile(Point location, int powerOutput = 100)
         {
-            _game = game;
             Location = location;
-            Map = map;
             PowerOutput = powerOutput;
         }
 
-        public void Move(Direction direction)
+        public void Move(Game game, Direction direction)
         {
             var newLocation = Location + DirectionAndValue.DirectionsAndValues[direction];
-            if (!Map.InBounds(newLocation) || Map.IsWall(newLocation))
+            if (!game.Map.InBounds(newLocation) || game.Map.IsWall(newLocation))
             {
                 IsInAction = false;
                 return;
             }
 
-            if (Map.Cells[newLocation.X, newLocation.Y] == Cell.Monster)
+            if (game.Map.Cells[newLocation.X, newLocation.Y] == Cell.Monster)
             {
-                var monster = _game.Monsters.First(e => e.Location == newLocation);
+                var monster = game.Monsters.First(e => e.Location == newLocation);
                 monster.HP -= PowerOutput;
                 IsInAction = false;
                 if (monster.IsDead)
-                    Map.Cells[newLocation.X, newLocation.Y] = Cell.Empty;
+                {
+                    game.Score += game.ScoreForMurder;
+                    game.Map.Cells[newLocation.X, newLocation.Y] = Cell.Empty;
+                }
             }
             else
                 Location = newLocation;

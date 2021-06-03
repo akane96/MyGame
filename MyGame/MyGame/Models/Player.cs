@@ -18,21 +18,22 @@ namespace MyGame
             Name = name;
         }
 
-        public override void Move(Map map, Direction direction)
+        public override void Move(Game game, Direction direction)
         {
             var newPoint = Location + DirectionAndValue.DirectionsAndValues[direction];
-            if (!map.InBounds(newPoint) || map.IsWall(newPoint)) return;
-            if (map.Cells[newPoint.X, newPoint.Y] == Cell.Monster)
+            if (!game.Map.InBounds(newPoint) || game.Map.IsWall(newPoint)) return;
+            if (game.Map.Cells[newPoint.X, newPoint.Y] == Cell.Monster)
             {
                 HP = 0;
                 return;
             }
             
             Location = newPoint;
-            if (map.Cells[Location.X, Location.Y] == Cell.Projectile)
+            if (game.Map.Cells[Location.X, Location.Y] == Cell.Projectile)
             {
-               Projectiles.Add(new Projectile(Location, map, _game));
-               map.Cells[Location.X, Location.Y] = Cell.Empty;
+               Projectiles.Add(new Projectile(Location));
+               game.Map.Cells[Location.X, Location.Y] = Cell.Empty;
+               game.ProjectileOnMapCount--;
             }
         }
 
@@ -43,7 +44,7 @@ namespace MyGame
             Projectiles.RemoveAt(Projectiles.Count - 1);
             currentProjectile.IsInAction = true;
             currentProjectile.Location = _game.Player.Location;
-            currentProjectile.Move(direction);
+
             if (currentProjectile.IsInAction)
             {
                 ProjectilesInAction.Add((currentProjectile, direction));

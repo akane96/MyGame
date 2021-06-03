@@ -3,22 +3,27 @@ using System.Windows.Forms;
 
 namespace MyGame
 {
-    public partial class StartControl : UserControl
+    public sealed partial class StartControl : UserControl
     {
         private Game _game;
         public StartControl()
         {
+            BackgroundImage = Image.FromFile("background.png");
             InitializeComponent();
         }
 
         public void Configure(Game game)
         {
-            if (this._game != null)
+            if (_game != null)
                 return;
-            this._game = game;
+            _game = game;
             var button = new Button();
-            button.Name = "Начать игру";
-            button.BackColor = Color.Brown;
+            button.Text = "Начать игру";
+            button.Size = new Size(300, 150);
+            button.Top = (Size.Height - button.Height) / 2;
+            button.Left = (Size.Width - button.Width) / 2;
+            button.Font = new Font(FontFamily.GenericMonospace, 20);
+            button.TextAlign = ContentAlignment.MiddleCenter;
             Controls.Add(button);
             button.Click += (sender, args) =>
             {

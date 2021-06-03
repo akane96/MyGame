@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace MyGame
 {
-    public partial class PlayerSelectionControl : UserControl
+    public sealed partial class PlayerSelectionControl : UserControl
     {
         private Game game;
         public PlayerSelectionControl()
         {
+            BackgroundImage = Image.FromFile("background.png");
             InitializeComponent();
-            
         }
 
         public void Configure(Game game)
@@ -19,8 +19,7 @@ namespace MyGame
             {
                 this.game = game;
             }
-            BackgroundImage = Image.FromFile("background.png");
-
+            
             var label = new Label
             {
                 Text = "Выберите персонажа", TextAlign = ContentAlignment.MiddleCenter, Width = 300, Height = 100,

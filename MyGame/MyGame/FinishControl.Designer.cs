@@ -2,7 +2,7 @@
 
 namespace MyGame
 {
-    partial class FinishControl
+    sealed partial class FinishControl
     {
         /// <summary> 
         /// Required designer variable.

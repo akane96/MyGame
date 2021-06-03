@@ -10,13 +10,13 @@
       <Compile Update="PlayerSelectionControl.cs">
         <SubType>UserControl</SubType>
       </Compile>
+      <Compile Update="StartControl.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
       <Compile Update="BattleControl.cs">
         <SubType>UserControl</SubType>
       </Compile>
       <Compile Update="FinishControl.cs">
-        <SubType>UserControl</SubType>
-      </Compile>
-      <Compile Update="StartControl.cs">
         <SubType>UserControl</SubType>
       </Compile>
     </ItemGroup>

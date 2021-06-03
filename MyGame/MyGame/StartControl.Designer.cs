@@ -2,7 +2,7 @@
 
 namespace MyGame
 {
-    partial class StartControl
+    sealed partial class StartControl
     {
         /// <summary> 
         /// Required designer variable.
