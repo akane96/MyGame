@@ -12,7 +12,7 @@ namespace MyGame
         private static readonly Bitmap Grass = new Bitmap(Image.FromFile("grass.png"));
         private static readonly Bitmap Wall = new Bitmap(Image.FromFile("wall.png"));
         private static readonly Bitmap ProjectileImage = new Bitmap(Image.FromFile("Light.png"));
-        private static readonly Bitmap ProjectileOnMapImage = new Bitmap(Image.FromFile("Ruby.png"));
+        private static readonly Bitmap ProjectileOnMapImage = new Bitmap(Image.FromFile("star.png").GetThumbnailImage(Game.CellSize, Game.CellSize, null, IntPtr.Zero));
         private Bitmap Player1;
         private Bitmap[] monstersImages;
         private readonly Random _random = new Random();
@@ -185,10 +185,14 @@ namespace MyGame
                 {
                     var location = new Point(x, y);
                     e.Graphics.DrawImage(
-                        map.IsWall(location) ? Wall :
-                        map.Cells[location.X, location.Y] == Cell.Projectile ? ProjectileOnMapImage : Grass,
+                        map.IsWall(location) ? Wall : Grass,
                         location.X * Game.CellSize,
                         y * Game.CellSize);
+                    if (map.Cells[location.X, location.Y] == Cell.Projectile)
+                        e.Graphics.DrawImage(
+                            ProjectileOnMapImage,
+                            location.X * Game.CellSize,
+                            y * Game.CellSize);
                 }
             }
         }
