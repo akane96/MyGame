@@ -7,14 +7,12 @@ namespace MyGame
 {
     public class Player : PersonBase
     {
-        private readonly Game _game;
         public PlayerName Name { get; }
         public List<Projectile> Projectiles { get; set; } = new List<Projectile>();
         public List<(Projectile, Direction)> ProjectilesInAction { get; set; } = new List<(Projectile, Direction)>();
 
-        public Player(PlayerName name, Point location, Game game) : base(location)
+        public Player(PlayerName name, Point location) : base(location)
         {
-            _game = game;
             Name = name;
         }
 
@@ -43,7 +41,7 @@ namespace MyGame
             var currentProjectile = Projectiles.Last();
             Projectiles.RemoveAt(Projectiles.Count - 1);
             currentProjectile.IsInAction = true;
-            currentProjectile.Location = _game.Player.Location;
+            currentProjectile.Location = Location;
 
             if (currentProjectile.IsInAction)
             {

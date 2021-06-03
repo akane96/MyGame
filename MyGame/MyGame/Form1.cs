@@ -14,63 +14,7 @@ namespace MyGame
         public Form1()
         {
             InitializeComponent();
-            var map = new Map(
-                new Cell[,]
-                {
-                    {
-                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall,
-                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty,
-                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty,
-                        Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty,
-                        Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty,
-                        Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall,
-                        Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty
-                    },
-                    {
-                        Cell.Monster, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Monster,
-                        Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall,
-                        Cell.Wall, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall,
-                        Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty,
-                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall,
-                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Monster
-                    },
-                    {
-                        Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall,
-                        Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty
-                    },
-                    {
-                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty,
-                        Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty
-                    }
-                }
-            );
+            var map = Initializer.CreateMap();
             startControl = new StartControl();
             playerSelectionControl = new PlayerSelectionControl();
             battleControl = new BattleControl();

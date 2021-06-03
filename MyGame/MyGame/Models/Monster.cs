@@ -17,6 +17,8 @@ namespace MyGame
 
         public override void Move(Game game, Direction direction)
         {
+            if (direction == Direction.None)
+                return;
             var newPoint = Location + DirectionAndValue.DirectionsAndValues[direction];
             if (!game.Map.InBounds(newPoint) || game.Map.IsWall(newPoint) || game.Map.Cells[newPoint.X, newPoint.Y] == Cell.Monster) return;
             if (game.Map.Cells[newPoint.X, newPoint.Y] == Cell.Projectile)
