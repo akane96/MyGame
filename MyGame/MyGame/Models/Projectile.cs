@@ -7,12 +7,11 @@ namespace MyGame
     {
         public Point Location { get; set; }
         public bool IsInAction { get; set; }
-        public int PowerOutput { get; }
+        public static int PowerOutput => 100;
 
-        public Projectile(Point location, int powerOutput = 100)
+        public Projectile(Point location)
         {
             Location = location;
-            PowerOutput = powerOutput;
         }
 
         public void Move(Game game, Direction direction)

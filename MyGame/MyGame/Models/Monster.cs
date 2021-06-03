@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Linq;
 
 namespace MyGame
 {
@@ -21,9 +22,17 @@ namespace MyGame
                 return;
             var newPoint = Location + DirectionAndValue.DirectionsAndValues[direction];
             if (!game.Map.InBounds(newPoint) || game.Map.IsWall(newPoint) || game.Map.Cells[newPoint.X, newPoint.Y] == Cell.Monster) return;
+            game.Map.Cells[Location.X, Location.Y] = Cell.Empty;
+            var projectileMurder = game.Player.ProjectilesInAction.FirstOrDefault(e => e.Item1.Location == newPoint);
+            if (projectileMurder != default)
+            {
+                HP -= Projectile.PowerOutput;
+                game.Player.ProjectilesInAction.Remove(projectileMurder);
+                if (IsDead)
+                    return;
+            }
             if (game.Map.Cells[newPoint.X, newPoint.Y] == Cell.Projectile)
                 game.ProjectileOnMapCount--;
-            game.Map.Cells[Location.X, Location.Y] = Cell.Empty;
             Location = newPoint;
             game.Map.Cells[newPoint.X, newPoint.Y] = Cell.Monster;
         }
